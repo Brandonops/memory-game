@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import MemoryCard from './Components/MemoryCard'
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
         <h1>Memory Game</h1>
         <h3>Match cards to win</h3>
       </header>
+      <MemoryCard />
     </div>
   );
 }
