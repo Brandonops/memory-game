@@ -1,19 +1,51 @@
-.memoryCard {
-    display: inline-block;
-    width: 150px;
-    height: 80px;
-    margin: 3px;
-    border-radius: 5px;
-    border: 3px solid #193d49;
-    background: repeating-radial-gradient(
+.MemoryCard__back {
+    width: 100%;
+    height: 100%;
+    
+    background-image: repeating-radial-gradient(
         circle,
         #16A7A2,
-        #16A7A2 10px,
-        #13807C 10px, 
-        #13807C 20px
+        #16A7A2,
+        #13807C, 
+        #13807C 
       );
+    
+}
+.MemoryCard {
+    display: inline-block;
+    width: 150px;
+    height: 120px;
+    margin: 5px;
+    cursor: pointer;
+    position: relative;
+    perspective: 800px;
+    
+}
+.MemoryCard__inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid #193d49;
+    border-radius: 5px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+.MemoryCard__front {
+    font-size: 30px;
+    padding-top: 40px;
+    transform: rotateY(180deg);
+}
+.MemoryCard__back, .MemoryCard__front {
+    position: absolute;
+    width: 100%;
+    backface-visibility: hidden;
+}
+.MemoryCard__inner.flipped {
+    transform: rotateY(180deg);
 }
 
 .DClogo {
+    margin-top: 20px;
     width: 80px;
 }
