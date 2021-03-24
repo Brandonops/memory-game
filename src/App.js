@@ -8,7 +8,30 @@ function App() {
         <h1>Memory Game</h1>
         <h3>Match cards to win</h3>
       </header>
+      <div>
+      <MemoryCard />  
       <MemoryCard />
+      <MemoryCard />
+      <MemoryCard />
+      </div>
+      <div>
+      <MemoryCard />  
+      <MemoryCard />
+      <MemoryCard />
+      <MemoryCard />
+      </div>
+      <div>
+      <MemoryCard />  
+      <MemoryCard />
+      <MemoryCard />
+      <MemoryCard />
+      </div>
+      <div>
+      <MemoryCard />  
+      <MemoryCard />
+      <MemoryCard />
+      <MemoryCard />
+      </div>
     </div>
   );
 }

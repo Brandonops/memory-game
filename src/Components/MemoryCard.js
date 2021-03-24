@@ -4,7 +4,9 @@ import './MemoryCard.css'
 class MemoryCard extends React.Component {
     render() {
         return(
-            <div class="MemoryCard">Card</div>
+            <div className="memoryCard">
+                <img className="DClogo"src="https://www.digitalcrafts.com/img/logo-wrench-white.png" alt="digitalcrafts logo"></img>
+            </div>
         )
     }
 }
