@@ -14,7 +14,7 @@
 .MemoryCard {
     display: inline-block;
     width: 150px;
-    height: 120px;
+    height: 130px;
     margin: 5px;
     cursor: pointer;
     position: relative;
@@ -33,7 +33,6 @@
 }
 .MemoryCard__front {
     font-size: 30px;
-    padding-top: 40px;
     transform: rotateY(180deg);
 }
 .MemoryCard__back, .MemoryCard__front {

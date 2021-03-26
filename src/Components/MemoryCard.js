@@ -1,6 +1,6 @@
 import React from 'react';
 import './MemoryCard.css'
-
+import * as THREE from 'three';
 class MemoryCard extends React.Component {
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ class MemoryCard extends React.Component {
                         <img className="DClogo"src="https://www.digitalcrafts.com/img/logo-wrench-white.png" alt="digitalcrafts logo"></img>
                     </div>
                     <div className="MemoryCard__front">
-                    {this.props.symbol}
+                        {this.props.symbol}
                     </div>
                 </div>
             </div>
