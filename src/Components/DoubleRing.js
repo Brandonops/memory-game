@@ -3,14 +3,14 @@ import * as THREE from "three";
 import { MTLLoader, OBJLoader } from "three-obj-mtl-loader";
 import chrome from './chrome.jpeg'
 
-class ThreeScene extends Component {
+class DoubleRing extends Component {
   componentDidMount() {
     const width = 150;
     const height = 130;
     this.scene = new THREE.Scene();
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setClearColor('#16A7A2');
+    this.renderer.setClearColor("#16A7A2");
     this.renderer.setSize(150, 130);
     this.mount.appendChild(this.renderer.domElement);
 
@@ -35,18 +35,23 @@ class ThreeScene extends Component {
   }
 
   addModels() {
-    const geometry = new THREE.BoxGeometry(15, 15, 15);
-    const material = new THREE.MeshBasicMaterial({
+    const geometry1 = new THREE.TorusGeometry(12, 2, 30, 100, 6.3);
+    const geometry2 = new THREE.TorusGeometry(6, 2, 30, 100, 6.3);
+    const material1 = new THREE.MeshBasicMaterial({
     });
-    this.box = new THREE.Mesh(geometry, material);
-    this.scene.add(this.box);
+    const material2 = new THREE.MeshBasicMaterial({
+    });
+    this.torus = new THREE.Mesh(geometry1, material1);
+    this.torus2 = new THREE.Mesh(geometry2, material2);
+    this.scene.add(this.torus, this.torus2);
 
     new THREE.TextureLoader().load(
-    
       chrome,
       texture => {
-        this.box.material.map = texture;
-        this.box.material.needsUpdate = true;
+        this.torus.material.map = texture;
+        this.torus.material.needsUpdate = true;
+        this.torus2.material.map = texture;
+        this.torus2.material.needsUpdate = true;
       },
       xhr => {
         console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
@@ -94,10 +99,12 @@ class ThreeScene extends Component {
     cancelAnimationFrame(this.frameId);
   };
   animate = () => {
-    if (this.box) this.box.rotation.y += 0.005;
-    if (this.box) this.box.rotation.x += 0.005;
-    if (this.box) this.box.rotation.z += 0.005;
-    if (this.freedomMesh) this.freedomMesh.rotation.y += 0.01;
+    if (this.torus) this.torus.rotation.z += -0.005;
+    // if (this.TorusKnot) this.TorusKnot.rotation.x += -0.005;
+    // if (this.TorusKnot) this.TorusKnot.rotation.z += -0.005;
+    if (this.torus2) this.torus2.rotation.y += 0.005;
+    // if (this.TorusKnot2) this.TorusKnot2.rotation.z += 0.005;
+    // if (this.freedomMesh) this.freedomMesh.rotation.y += 0.01;
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
@@ -115,5 +122,6 @@ class ThreeScene extends Component {
       />
     );
   }
+
 }
-export default ThreeScene;
+export default DoubleRing;

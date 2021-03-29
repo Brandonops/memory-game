@@ -29,7 +29,7 @@
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 3px solid #193d49;
     border-radius: 5px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 16px 1px #000000;
 }
 .MemoryCard__front {
     font-size: 30px;

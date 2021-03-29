@@ -3,14 +3,14 @@ import * as THREE from "three";
 import { MTLLoader, OBJLoader } from "three-obj-mtl-loader";
 import chrome from './chrome.jpeg'
 
-class ThreeScene extends Component {
+class Sphere extends Component {
   componentDidMount() {
     const width = 150;
     const height = 130;
     this.scene = new THREE.Scene();
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setClearColor('#16A7A2');
+    this.renderer.setClearColor("#16A7A2");
     this.renderer.setSize(150, 130);
     this.mount.appendChild(this.renderer.domElement);
 
@@ -35,45 +35,56 @@ class ThreeScene extends Component {
   }
 
   addModels() {
-    const geometry = new THREE.BoxGeometry(15, 15, 15);
+    // -----Step 1--------
+    const geometry = new THREE.SphereGeometry(13, 32, 32, 6, 6.3, 0, 4.2);
     const material = new THREE.MeshBasicMaterial({
     });
-    this.box = new THREE.Mesh(geometry, material);
-    this.scene.add(this.box);
+    this.sphere = new THREE.Mesh(geometry, material);
+    this.scene.add(this.sphere);
 
+    // -----Step 2--------
+    //LOAD TEXTURE and on completion apply it on SPHERE
     new THREE.TextureLoader().load(
     
       chrome,
       texture => {
-        this.box.material.map = texture;
-        this.box.material.needsUpdate = true;
+        //Update Texture
+        this.sphere.material.map = texture;
+        this.sphere.material.needsUpdate = true;
       },
       xhr => {
+        //Download Progress
         console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
       },
       error => {
+        //Error CallBack
         console.log("An error happened" + error);
       }
     );
 
+    // -----Step 4--------
+    //Loading 3d Models
+    //Loading Material First
     var mtlLoader = new MTLLoader();
     mtlLoader.setBaseUrl("./assets/");
     mtlLoader.load("freedom.mtl", materials => {
       materials.preload();
       console.log("Material loaded");
+      //Load Object Now and Set Material
       var objLoader = new OBJLoader();
       objLoader.setMaterials(materials);
       objLoader.load(
         "./assets/freedom.obj",
         object => {
           this.freedomMesh = object;
-          this.freedomMesh.position.setY(3);
+          this.freedomMesh.position.setY(3); //or  this
           this.freedomMesh.scale.set(0.02, 0.02, 0.02);
           this.scene.add(this.freedomMesh);
         },
         xhr => {
           console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
         },
+        // called when loading has errors
         error => {
           console.log("An error happened" + error);
         }
@@ -94,9 +105,11 @@ class ThreeScene extends Component {
     cancelAnimationFrame(this.frameId);
   };
   animate = () => {
-    if (this.box) this.box.rotation.y += 0.005;
-    if (this.box) this.box.rotation.x += 0.005;
-    if (this.box) this.box.rotation.z += 0.005;
+    // -----Step 3--------
+    //Rotate Models
+    if (this.sphere) this.sphere.rotation.y += 0.005;
+    if (this.sphere) this.sphere.rotation.x += 0.005;
+    if (this.sphere) this.sphere.rotation.z += 0.005;
     if (this.freedomMesh) this.freedomMesh.rotation.y += 0.01;
 
     this.renderScene();
@@ -116,4 +129,4 @@ class ThreeScene extends Component {
     );
   }
 }
-export default ThreeScene;
+export default Sphere;

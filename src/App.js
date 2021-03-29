@@ -2,10 +2,17 @@ import { Component } from 'react';
 import './App.css';
 import MemoryCard from './Components/MemoryCard'
 import Cube from './Components/Cube';
-import Cone from './Components/Cone';
+import Donut from './Components/Ring';
+import Knot from './Components/Knot';
+import Sphere from './Components/Sphere'
+import Spiral from './Components/Spiral'
+import Pyramid from './Components/Pyramid'
+import DoubleKnot from './Components/DoubleKnot';
+import DoubleRing from './Components/DoubleRing';
+
 
 function generateDeck() {
-    const symbols = [<Cube />, '£', '§', '•', '$', '+', 'ø']
+    const symbols = [<Cube />, <Donut />, <Knot />, <Sphere />, <Spiral />, <Pyramid />, <DoubleKnot />, <DoubleRing />]
     let deck = []
     for (let index = 0; index < 2; index++) {
       for (let i = 0; i < 8; i++) {
@@ -109,7 +116,6 @@ class App extends Component {
         {cardsJSX.slice(12,16)}
         </div>
 
-        <Cone />
       </div>
     );
 
